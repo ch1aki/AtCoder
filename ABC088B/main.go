@@ -15,17 +15,13 @@ func main() {
 	}
 	sort.Ints(cards)
 
-	var alice, bob int
-	var flag bool = true
+	var r int
+	op := 1
+
 	for i := n - 1; 0 <= i; i-- {
-		if flag {
-			alice += cards[i]
-			flag = false
-		} else {
-			bob += cards[i]
-			flag = true
-		}
+		r += cards[i] * op
+		op *= -1
 	}
 
-	fmt.Println(alice - bob)
+	fmt.Println(r)
 }
