@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"math"
 )
 
 type Point struct {
@@ -11,8 +12,6 @@ type Point struct {
 }
 
 type Points []Point
-
-func distance(current Point, target)
 
 func main() {
 	var points Points
@@ -25,6 +24,18 @@ func main() {
 		points = append(points, p)
 	}
 
-	fmt.Printf("%v\n", points) // DEBUG
-
+	c := Point{0, 0, 0}
+	for _, p := range(points) {
+		moving := p.T - c.T
+		dist := int(math.Abs(float64(p.X - c.X)) + math.Abs(float64(p.Y - c.Y)))
+		if moving < dist {
+			fmt.Println("No")
+			return
+		} else if moving > dist && moving % 2 != dist % 2 {
+			fmt.Println("No")
+			return
+		}
+		c = p
+	}
+	fmt.Println("Yes")
 }
