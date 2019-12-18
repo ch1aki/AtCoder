@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"math"
+	"strconv"
 )
 
 func main() {
@@ -10,28 +10,20 @@ func main() {
 	fmt.Scanf("%d %d %d", &a, &b, &x)
 
 	start := 0
-	end := int(math.Pow(10, 9))
-	var r int
-	for {
-		if end < start {
-			break
-		}
+	end := int(1e9) + 1
 
+	for (end - start) > 1 {
 		n := (start + end)/2
-		t := a * n + b * int(math.Log10(float64(n)))
-		fmt.Printf("start:%d\tent:%d\tn:%d\tr:%d\tt:%d\n", start, end, n, r, t) // DEBUG
 
-		if x >= t && t > r {
-			r = n
-		}
+		t := a * n + b * len(strconv.Itoa(n))
 
-		if x > t {
+		if t <= x {
 			start = n
 		} else {
 			end = n
 		}
 	}
 
-	fmt.Println(r)
+	fmt.Println(start)
 
 }
