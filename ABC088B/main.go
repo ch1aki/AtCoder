@@ -13,15 +13,16 @@ func main() {
 	for i := 0; i < n; i++ {
 		fmt.Scan(&cards[i])
 	}
-	sort.Ints(cards)
+	sort.Sort(sort.Reverse(sort.IntSlice(cards)))
 
-	var r int
-	op := 1
-
-	for i := n - 1; 0 <= i; i-- {
-		r += cards[i] * op
-		op *= -1
+	a, b := 0, 0
+	for i, v := range cards {
+		if i%2 == 0 {
+			a += v
+		} else {
+			b += v
+		}
 	}
 
-	fmt.Println(r)
+	fmt.Println(a - b)
 }
